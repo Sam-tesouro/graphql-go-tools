@@ -54,7 +54,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {}; Field "nested" of required type "NestedSelfSatisfiedInput!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "nested" of required type "NestedSelfSatisfiedInput!" was not provided.`, err.Error())
 	})
 
 	t.Run("unprovided required input fields without default values produce validation errors #2", func(t *testing.T) {
@@ -65,7 +65,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {"nested":{},"value":"string"}; Field "secondNested" of required type "NestedSelfSatisfiedInput!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "secondNested" of required type "NestedSelfSatisfiedInput!" was not provided.`, err.Error())
 	})
 
 	t.Run("provided but empty nested required inputs with default values do not produce validation errors", func(t *testing.T) {
@@ -150,7 +150,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		assert.NotNil(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value {}; Field "bar" of required type "Baz!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Field "bar" of required type "Baz!" was not provided.`, err.Error())
 	})
 
 	t.Run("required nested field field argument of custom scalar was null", func(t *testing.T) {
@@ -161,7 +161,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		assert.NotNil(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value {"bar":null}; Field "bar" of required type "Baz!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Field "bar" of required type "Baz!" was not provided.`, err.Error())
 	})
 
 	t.Run("required field argument provided with default value", func(t *testing.T) {
@@ -280,7 +280,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value true; Expected type "Foo" to be an object.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Expected type "Foo" to be an object.`, err.Error())
 	})
 
 	t.Run("wrong Integer value for input object field", func(t *testing.T) {
@@ -291,7 +291,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value 123; Expected type "Foo" to be an object.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Expected type "Foo" to be an object.`, err.Error())
 	})
 
 	t.Run("required field on present input object not provided", func(t *testing.T) {
@@ -302,7 +302,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value {}; Field "bar" of required type "String!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Field "bar" of required type "String!" was not provided.`, err.Error())
 	})
 
 	t.Run("required field on present input object provided with correct type", func(t *testing.T) {
@@ -334,7 +334,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {}; Field "bar" of required type "String!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "bar" of required type "String!" was not provided.`, err.Error())
 	})
 
 	t.Run("required string field on input object provided with null", func(t *testing.T) {
@@ -345,7 +345,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {"bar":null}; Field "bar" of required type "String!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "bar" of required type "String!" was not provided.`, err.Error())
 	})
 
 	t.Run("required string field on input object provided with Int", func(t *testing.T) {
@@ -389,7 +389,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {"foo":{}}; Field "bar" of required type "String!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "bar" of required type "String!" was not provided.`, err.Error())
 	})
 
 	t.Run("required string field on nested input object provided with null", func(t *testing.T) {
@@ -400,7 +400,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {"foo":{"bar":null}}; Field "bar" of required type "String!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "bar" of required type "String!" was not provided.`, err.Error())
 	})
 
 	t.Run("required string field on nested input object provided with Int", func(t *testing.T) {
@@ -498,7 +498,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {"foo":null}; Field "foo" of required type "Foo!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "foo" of required type "Foo!" was not provided.`, err.Error())
 	})
 
 	t.Run("required nested enum argument provided with correct value", func(t *testing.T) {
@@ -637,7 +637,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value 123; Expected type "Foo" to be an object.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Expected type "Foo" to be an object.`, err.Error())
 	})
 
 	t.Run("required input object field argument provided with list input object value", func(t *testing.T) {
@@ -648,7 +648,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$bar" got invalid value [{"bar":"hello"}]; Expected type "Foo" to be an object.`, err.Error())
+		assert.Equal(t, `Variable "$bar" got invalid value; Expected type "Foo" to be an object.`, err.Error())
 	})
 
 	t.Run("required enum list argument provided with non list Int value", func(t *testing.T) {
@@ -703,7 +703,7 @@ func TestVariablesValidation(t *testing.T) {
 		}
 		err := runTest(t, tc)
 		require.Error(t, err)
-		assert.Equal(t, `Variable "$input" got invalid value {"bars":[]}; Field "bat" of required type "Int!" was not provided.`, err.Error())
+		assert.Equal(t, `Variable "$input" got invalid value; Field "bat" of required type "Int!" was not provided.`, err.Error())
 	})
 
 	t.Run("optional nested field is null followed by required nested field of wrong type", func(t *testing.T) {
