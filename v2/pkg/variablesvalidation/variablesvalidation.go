@@ -183,7 +183,7 @@ func (v *variablesVisitor) renderVariableInvalidObjectTypeError(typeName []byte,
 	}
 	variableContent := out.String()
 	v.err = &InvalidVariableError{
-		Message: fmt.Sprintf(`Variable "$%s" got invalid value %s; Expected type "%s" to be an object.`, string(v.currentVariableName), variableContent, string(typeName)),
+		Message: fmt.Sprintf(`Variable "$%s" got invalid value; Expected type "%s" to be an object.`, string(v.currentVariableName), string(typeName)),
 	}
 }
 
@@ -202,7 +202,7 @@ func (v *variablesVisitor) renderVariableRequiredNotProvidedError(fieldName []by
 		return
 	}
 	v.err = &InvalidVariableError{
-		Message: fmt.Sprintf(`Variable "$%s" got invalid value %s; Field "%s" of required type "%s" was not provided.`, string(v.currentVariableName), variableContent, string(fieldName), out.String()),
+		Message: fmt.Sprintf(`Variable "$%s" got invalid value; Field "%s" of required type "%s" was not provided.`, string(v.currentVariableName), string(fieldName), out.String()),
 	}
 }
 
